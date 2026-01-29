@@ -34,7 +34,7 @@ class UploadFileView(APIView):
             return Response(
                 {
                     "ok": False,
-                    "msg": "El documento ingresado no coincide con el extraido por el usuario",
+                    "msg": "El documento ingresado por el usuario no coincide con el extraido",
                     "data": data
                 },
                 status=status.HTTP_400_BAD_REQUEST

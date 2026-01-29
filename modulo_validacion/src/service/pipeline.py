@@ -68,12 +68,14 @@ def pipeline_validate_document_id(num_documento_value: str,  foto_frontal: Uploa
     # Se comparan los números de documentos
     flag = compare_id_fields(num_documento_endpoint = num_documento_value, num_documento_extracted = data["num_documento"])
     
+
+
     if flag:
         validate_state = True
         return data, validate_state
     
     elif not flag:
-        validate_state = True
+        validate_state = False
         return data, validate_state
 
 
