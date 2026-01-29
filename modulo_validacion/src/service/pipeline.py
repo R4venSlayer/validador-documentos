@@ -11,7 +11,7 @@ from uuid import uuid4
 
 from ..infrastructure.file_manager import crear_carpeta, guardar_imagen
 from ..infrastructure.ocr_reader import read_img_process
-from .preprocess_document import classify_document
+from .preprocess_document import classify_document, exec_preprocess
 
 def pipeline_save_pictures(archivos:Dict):
     
@@ -44,7 +44,10 @@ def preprocess_info_from_imgs(content_dictionary: Dict):
 
     state_document = classify_document(reverse_content=content_dictionary["reverso"])
 
-    print(state_document)
+    # Paso 2. Ejecutar la extracción de información dependiendo del documento detectado (nuevo "True" o antiguo "False")
+    exec_preprocess(is_new_document=state_document, content=content_dictionary)
+
+
 
 
 
@@ -59,7 +62,7 @@ def pipeline_validate_document_id(num_documento_value: str,  foto_frontal: Uploa
 
     results_from_images = pipeline_extract_text_from_img(carpeta_destino)
 
-    print(results_from_images.keys())
+    preprocess_info_from_imgs(content_dictionary=results_from_images)
 
 
 # def pipeline_validate_document_id(

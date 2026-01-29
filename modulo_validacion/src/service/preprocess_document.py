@@ -22,5 +22,8 @@ def classify_document(reverse_content:str):
 def exec_preprocess(is_new_document:bool, content:Dict):
 
     if is_new_document:
-        PreprocessingOldDocument(front_content=content["frontal"], reverse_content=content["reverso"])
-
+        ...
+    
+    elif not is_new_document :
+        preprocess = PreprocessingOldDocument(front_content=content["frontal"], reverse_content=content["reverso"])
+        preprocess.exec_preprocess()
