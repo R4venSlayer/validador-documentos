@@ -18,15 +18,29 @@ class UploadFileView(APIView):
         foto_frontal_value = request.FILES.get("foto_frontal")
         foto_reverso_value = request.FILES.get("foto_reverso")
     
-        data = pipeline_validate_document_id(num_documento_value, foto_frontal_value, foto_reverso_value)
+        data, validate_state = pipeline_validate_document_id(num_documento_value, foto_frontal_value, foto_reverso_value)
 
-        return Response(
-            {
-                "ok": True,
-                "data": data
-            },
-            status=status.HTTP_201_CREATED
-        )
+        if validate_state:
+            return Response(
+                {
+                    "ok": True,
+                    "data": data
+                },
+                status=status.HTTP_200_OK
+            )
+        
+        elif not validate_state:
+
+            return Response(
+                {
+                    "ok": False,
+                    "msg": "El documento ingresado no coincide con el extraido por el usuario",
+                    "data": data
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+
     
     
 

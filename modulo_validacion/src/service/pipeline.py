@@ -45,11 +45,12 @@ def preprocess_info_from_imgs(content_dictionary: Dict):
     state_document = classify_document(reverse_content=content_dictionary["reverso"])
 
     # Paso 2. Ejecutar la extracción de información dependiendo del documento detectado (nuevo "True" o antiguo "False")
-    exec_preprocess(is_new_document=state_document, content=content_dictionary)
+    data = exec_preprocess(is_new_document=state_document, content=content_dictionary)
 
+    return data
 
-
-
+def compare_id_fields(num_documento_endpoint:str, num_documento_extracted:str):
+    return num_documento_extracted == num_documento_endpoint
 
 def pipeline_validate_document_id(num_documento_value: str,  foto_frontal: UploadedFile, foto_reverso: UploadedFile):
 
@@ -62,7 +63,18 @@ def pipeline_validate_document_id(num_documento_value: str,  foto_frontal: Uploa
 
     results_from_images = pipeline_extract_text_from_img(carpeta_destino)
 
-    preprocess_info_from_imgs(content_dictionary=results_from_images)
+    data = preprocess_info_from_imgs(content_dictionary=results_from_images)
+
+    # Se comparan los números de documentos
+    flag = compare_id_fields(num_documento_endpoint = num_documento_value, num_documento_extracted = data["num_documento"])
+    
+    if flag:
+        validate_state = True
+        return data, validate_state
+    
+    elif not flag:
+        validate_state = True
+        return data, validate_state
 
 
 # def pipeline_validate_document_id(

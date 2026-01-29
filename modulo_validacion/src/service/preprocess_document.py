@@ -26,4 +26,8 @@ def exec_preprocess(is_new_document:bool, content:Dict):
     
     elif not is_new_document :
         preprocess = PreprocessingOldDocument(front_content=content["frontal"], reverse_content=content["reverso"])
-        preprocess.exec_preprocess()
+        result = preprocess.exec_preprocess()
+
+        return result
+
+        
