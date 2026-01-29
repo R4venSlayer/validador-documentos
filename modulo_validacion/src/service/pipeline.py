@@ -65,8 +65,13 @@ def pipeline_validate_document_id(num_documento_value: str,  foto_frontal: Uploa
 
     data = preprocess_info_from_imgs(content_dictionary=results_from_images)
 
+    if None in data.values():
+        
+        return data, None
+     
     # Se comparan los números de documentos
     flag = compare_id_fields(num_documento_endpoint = num_documento_value, num_documento_extracted = data["num_documento"])
+    
     
 
 

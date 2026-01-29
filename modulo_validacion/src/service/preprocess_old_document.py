@@ -34,10 +34,11 @@ class PreprocessingOldDocument:
         # Se detecta la cadena que contiene un patrón que represente un documento
         document_detected = [ item for item in striped_items_text if re.search(r'\b\d{8,10}\b', item)]
 
-        # Se extrae únicamente los números encontrados en la cadena encontrada previamente
-        num_document_from_front = re.search(r'\d{8,10}', document_detected[0]).group()
+        if len(document_detected) > 0:
+            # Se extrae únicamente los números encontrados en la cadena encontrada previamente
+            num_document_from_front = re.search(r'\d{8,10}', document_detected[0]).group()
+            return num_document_from_front
 
-        return num_document_from_front
         
 
     def get_date_issue(self):

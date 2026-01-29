@@ -18,17 +18,20 @@ class UploadFileView(APIView):
         foto_frontal_value = request.FILES.get("foto_frontal")
         foto_reverso_value = request.FILES.get("foto_reverso")
     
+        print(foto_frontal_value)
         data, validate_state = pipeline_validate_document_id(num_documento_value, foto_frontal_value, foto_reverso_value)
 
-        if validate_state:
+
+        if None in data.values():
             return Response(
                 {
-                    "ok": True,
+                    "ok": False,
+                    "msg": "No se pudo extraer la información del documento",
                     "data": data
                 },
-                status=status.HTTP_200_OK
+                status=status.HTTP_400_BAD_REQUEST
             )
-        
+
         elif not validate_state:
 
             return Response(
@@ -39,6 +42,18 @@ class UploadFileView(APIView):
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
+        
+        elif validate_state:
+            return Response(
+                {
+                    "ok": True,
+                    "data": data
+                },
+                status=status.HTTP_200_OK
+            )
+        
+
+
 
 
     
