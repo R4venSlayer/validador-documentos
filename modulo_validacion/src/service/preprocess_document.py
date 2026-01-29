@@ -1,4 +1,6 @@
 from .preprocess_old_document import PreprocessingOldDocument
+from .preprocess_new_document import PreprocessingNewDocument
+
 from typing import Dict
 
 def classify_document(reverse_content:str):
@@ -22,7 +24,10 @@ def classify_document(reverse_content:str):
 def exec_preprocess(is_new_document:bool, content:Dict):
 
     if is_new_document:
-        ...
+        preprocess = PreprocessingNewDocument(front_content=content["frontal"], reverse_content=content["reverso"])
+        result = preprocess.exec_preprocess()
+
+        return result
     
     elif not is_new_document :
         preprocess = PreprocessingOldDocument(front_content=content["frontal"], reverse_content=content["reverso"])

@@ -21,7 +21,7 @@ class PreprocessingOldDocument:
 
     def get_document_number(self):
         
-    
+        
         # Se retiran . y , de la cadena extraída
         replaced_text = self.front_content.replace('.','').replace(',','')
         
@@ -101,6 +101,7 @@ class PreprocessingOldDocument:
         final_date_detected = [re.search(DATE_TEXT_MONTH_COMPACT, item).group() for item in date_without_symbols_detected]
 
         parsed_date = [parse_to_date(date_str=item) for item in final_date_detected]
+
 
         if len(parsed_date) == 2:
             date_issue_from_reverse = parsed_date[1]

@@ -18,7 +18,6 @@ class UploadFileView(APIView):
         foto_frontal_value = request.FILES.get("foto_frontal")
         foto_reverso_value = request.FILES.get("foto_reverso")
     
-        print(foto_frontal_value)
         data, validate_state = pipeline_validate_document_id(num_documento_value, foto_frontal_value, foto_reverso_value)
 
 
