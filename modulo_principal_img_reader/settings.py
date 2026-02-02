@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'modulo_validacion'
+    'modulo_validacion',
+    'modulo_database',
+    'modulo_formulario'
 ]
 
 MIDDLEWARE = [
@@ -75,11 +77,20 @@ WSGI_APPLICATION = 'modulo_principal_img_reader.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "mssql",
+        "NAME": "ActualizacionDatos",
+        "USER": "actualizacion_datos_user",
+        "PASSWORD": "12345",
+        "HOST": "localhost, 1434",
+        "OPTIONS": {
+            "driver": "ODBC Driver 17 for SQL Server",
+        },
+        "CONN_MAX_AGE": 60,
     }
 }
+
+
 
 
 # Password validation
