@@ -99,8 +99,9 @@ class UploadFormRecordView(APIView):
             {
                 "ok": True,
                 "msg": "Se ha guardado correctamente la información del cotizante en la base de datos",
-                "data": None
+                "data": id_persona_value
             },
+            
             status=status.HTTP_200_OK
         )
 
