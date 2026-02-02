@@ -10,6 +10,7 @@ from rest_framework.request import Request
 
 from ..domain.dtos import InformacionPersonaDTO
 
+from ..service.pipeline_upload_cotizante_form import pipeline
 import uuid
 
 class UploadFormRecordView(APIView):
@@ -92,12 +93,14 @@ class UploadFormRecordView(APIView):
             poblacion_lgbtiq=poblacion_lgbtiq_value
         )
 
+        pipeline(dto_object=informacion_cotizante_dto)
+
         return Response(
             {
-                "ok": False,
-                "msg": "No se pudo extraer la información del documento",
+                "ok": True,
+                "msg": "Se ha guardado correctamente la información del cotizante en la base de datos",
                 "data": None
             },
-            status=status.HTTP_400_BAD_REQUEST
+            status=status.HTTP_200_OK
         )
 
