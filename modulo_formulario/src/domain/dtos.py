@@ -5,7 +5,16 @@ from uuid import UUID
 
 @dataclass
 class InformacionPersonaDTO:
+    # Identificador
     id_persona: UUID
+
+    # Identificación personal
+    primer_nombre: Optional[str] = None
+    segundo_nombre: Optional[str] = None
+    primer_apellido: Optional[str] = None
+    segundo_apellido: Optional[str] = None
+    numero_documento: Optional[str] = None
+    tipo_documento: Optional[str] = None
 
     # Información Sociodemográfica
     estado_civil: Optional[str] = None
