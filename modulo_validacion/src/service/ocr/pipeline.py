@@ -62,6 +62,7 @@ def pipeline_validate_document_id(num_documento_value: str,  foto_frontal: Uploa
     carpeta_destino = pipeline_save_pictures(archivos = archivos_dict)
 
     results_from_images = pipeline_extract_text_from_img(carpeta_destino)
+   
     preprocess_info_from_imgs(content_dictionary=results_from_images)
     
     data = preprocess_info_from_imgs(content_dictionary=results_from_images)

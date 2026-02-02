@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('api/ocr/', include('modulo_validacion.src.interface.urls')),
+    path('api/validate/', include('modulo_validacion.src.interface.urls')),
     path('api/form/', include('modulo_formulario.src.interface.urls'))
 ]

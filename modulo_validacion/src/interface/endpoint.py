@@ -8,7 +8,8 @@ from rest_framework import status
 
 from rest_framework.request import Request
 
-from ..service.pipeline import pipeline_validate_document_id
+from ..service.ocr.pipeline import pipeline_validate_document_id
+from ..service.comparisson_affiliates.pipeline import pipeline_validate_affiliate_existance
 
 class UploadFileView(APIView):
 
@@ -53,11 +54,17 @@ class UploadFileView(APIView):
         
 
 
+class ValidateAffiliate(APIView):
 
+    def get(self, request:Request, numero_documento_afiliado):
+        
+        data, validate_state = pipeline_validate_affiliate_existance(numero_documento=numero_documento_afiliado)
 
-    
-    
-
-
-
-
+        return Response(
+            {
+                "ok": validate_state,
+                "msg": "Se ha encontrado el usuario dentro de la base de afiliados",
+                "data": data
+            },
+            status=status.HTTP_200_OK
+        )
