@@ -35,7 +35,7 @@ class Informacionpersona(models.Model):
     tipo_discapacidad = models.CharField(max_length=50, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
     grupo_etnico = models.CharField(max_length=50, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
     poblacion_lgbtiq = models.CharField(max_length=50, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
-
+    tipo_afiliado = models.CharField(max_length=50, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
     class Meta:
         managed = False
         db_table = 'InformacionPersona'

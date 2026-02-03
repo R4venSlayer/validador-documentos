@@ -16,6 +16,9 @@ class InformacionPersonaDTO:
     numero_documento: Optional[str] = None
     tipo_documento: Optional[str] = None
 
+    # Información de afiliación
+    tipo_afiliado: Optional[str] = None
+
     # Información Sociodemográfica
     estado_civil: Optional[str] = None
     direccion_residencia: Optional[str] = None

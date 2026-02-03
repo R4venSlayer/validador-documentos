@@ -32,6 +32,9 @@ class UploadFormRecordView(APIView):
         numero_documento_value = request.POST.get("numero_documento")
         tipo_documento_value = request.POST.get("tipo_documento")
 
+        # Información afiliación
+        tipo_afiliado_value = request.POST.get("tipo_afiliado")
+
         # Información Sociodemográfica
         estado_civil_value = request.POST.get("estado_civil")
         direccion_residencia_value = request.POST.get("direccion_residencia")
@@ -69,6 +72,9 @@ class UploadFormRecordView(APIView):
             segundo_apellido=segundo_apellido_value,
             numero_documento=numero_documento_value,
             tipo_documento=tipo_documento_value,
+
+            # Información afiliación
+            tipo_afiliado=tipo_afiliado_value,
 
             # Información Sociodemográfica
             estado_civil=estado_civil_value,
