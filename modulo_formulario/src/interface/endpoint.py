@@ -15,6 +15,9 @@ from ..service.pipeline_upload_cotizante_form import pipeline
 import uuid
 
 from ..service.pipeline_get_departamento_form import pipeline_get_records_departamento
+from ..service.pipeline_get_municipios_form import pipeline_get_municipios_por_departamentos
+
+from modulo_database.src.interface.serializers import DepartamentoSerializer
 
 class UploadFormRecordView(APIView):
 
@@ -117,6 +120,24 @@ class ReturnDepartamentoView(APIView):
             {
                 "ok": True,
                 "msg": "Se han consultado exitosamente los departamentos",
+                "data": data
+            },
+            
+            status=status.HTTP_200_OK
+        )
+    
+
+class ReturnMunicipioView(APIView):
+
+    def get(self, request:Request, departamento:str):
+        
+        data = pipeline_get_municipios_por_departamentos(departamento_value=departamento)
+
+        
+        return Response(
+            {
+                "ok": True,
+                "msg": "Se han consultado exitosamente los municipios",
                 "data": data
             },
             
