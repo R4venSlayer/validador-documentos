@@ -92,7 +92,6 @@ class ObtenerInformacionAfiliadoUseCase:
         self.repository = repository
         
     def execute(self, filters_dictionary):
-        print("jola")
         return self.repository.get_afiliado_by_id(**filters_dictionary)
 
 # class ObtenerTipoArchivoUseCase:

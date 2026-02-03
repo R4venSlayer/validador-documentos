@@ -60,11 +60,21 @@ class ValidateAffiliate(APIView):
         
         data, validate_state = pipeline_validate_affiliate_existance(numero_documento=numero_documento_afiliado)
 
-        return Response(
-            {
-                "ok": validate_state,
-                "msg": "Se ha encontrado el usuario dentro de la base de afiliados",
-                "data": data
-            },
-            status=status.HTTP_200_OK
-        )
+        if validate_state:
+            return Response(
+                {
+                    "ok": validate_state,
+                    "msg": "Se ha encontrado el usuario dentro de la base de afiliados",
+                    "data": data
+                },
+                status=status.HTTP_200_OK
+            )
+        else:
+            return Response(
+                {
+                    "ok": validate_state,
+                    "msg": "No se ha encontrado el usuario dentro de la base de afiliados",
+                    "data": data
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
