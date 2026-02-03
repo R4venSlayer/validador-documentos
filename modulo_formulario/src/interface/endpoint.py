@@ -17,7 +17,7 @@ import uuid
 from ..service.pipeline_get_departamento_form import pipeline_get_records_departamento
 from ..service.pipeline_get_municipios_form import pipeline_get_municipios_por_departamentos
 
-from modulo_database.src.interface.serializers import DepartamentoSerializer
+
 
 class UploadFormRecordView(APIView):
 
