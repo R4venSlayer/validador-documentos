@@ -77,6 +77,13 @@ class ObtenerDepartamentosUnicosUseCase:
     def execute(self, filters_dictionary):
         return self.repository.filter_distinct_departamentos(**filters_dictionary)
 
+class ObtenerMunicipioPorDepartamentoUseCase:
+    
+    def __init__(self, repository: MunicipioRepository):
+        self.repository = repository
+
+    def execute(self, filters_dictionary):
+        return self.repository.filter_municipios_by_departamento(**filters_dictionary)
 
         
 

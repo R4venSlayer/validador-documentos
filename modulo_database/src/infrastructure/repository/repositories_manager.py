@@ -12,5 +12,13 @@ class MunicipioRepository(BaseRepository):
             self.model.objects
             .filter(**filters)
             .values("descripcion_dep")
-            .distinct()
+            .distinct().order_by("descripcion_dep")
+        )
+    
+    def filter_municipios_by_departamento(self, **filters):
+        return (
+            self.model.objects
+            .filter(**filters)
+            .values("descripcion_mun")
+            .order_by("descripcion_mun")
         )
