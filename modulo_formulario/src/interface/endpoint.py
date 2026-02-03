@@ -11,7 +11,10 @@ from rest_framework.request import Request
 from ..domain.dtos import InformacionPersonaDTO
 
 from ..service.pipeline_upload_cotizante_form import pipeline
+
 import uuid
+
+from ..service.pipeline_get_departamento_form import pipeline_get_records_departamento
 
 class UploadFormRecordView(APIView):
 
@@ -105,3 +108,18 @@ class UploadFormRecordView(APIView):
             status=status.HTTP_200_OK
         )
 
+class ReturnDepartamentoView(APIView):
+    def get(self, request:Request):
+        
+        data = pipeline_get_records_departamento()
+
+        return Response(
+            {
+                "ok": True,
+                "msg": "Se han consultado exitosamente los departamentos",
+                "data": data
+            },
+            
+            status=status.HTTP_200_OK
+        )
+    
