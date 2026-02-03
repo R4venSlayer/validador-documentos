@@ -5,6 +5,7 @@ from ..domain.ports import (
 )
 
 from typing import Dict, List
+from ..infrastructure.repository.repositories_manager import MunicipioRepository
 
 class CrearRegistroUseCase:
 
@@ -66,7 +67,15 @@ class ObtenerRegistrosUseCase:
         self.repository = repository
         
     def execute(self, filters_dictionary):
-        return self.repository.get(**filters_dictionary)
+        return self.repository.filter(**filters_dictionary)
+
+
+class ObtenerDepartamentosUnicosUseCase:
+    def __init__(self, repository: MunicipioRepository):
+        self.repository = repository
+
+    def execute(self, filters_dictionary):
+        return self.repository.filter_distinct_departamentos(**filters_dictionary)
 
 
         

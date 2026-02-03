@@ -6,3 +6,11 @@ class InformacionCotizanteRepository(BaseRepository):
 
 class MunicipioRepository(BaseRepository):
     model = Municipio
+    
+    def filter_distinct_departamentos(self, **filters):
+        return (
+            self.model.objects
+            .filter(**filters)
+            .values("descripcion_dep")
+            .distinct()
+        )
