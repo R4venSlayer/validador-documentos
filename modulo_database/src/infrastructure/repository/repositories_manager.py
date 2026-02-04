@@ -1,5 +1,5 @@
 from .base_repository import BaseRepository
-from ..models.modelo import Informacionpersona, Municipio, Afiliados
+from ..models.modelo import Informacionpersona, Municipio, Afiliados, Localidades
 
 class InformacionCotizanteRepository(BaseRepository):
     model = Informacionpersona 
@@ -33,4 +33,13 @@ class AfiliadosRepository(BaseRepository):
             .filter(**filters)
             .values("primer_nombre", "segundo_nombre", "primer_apellido", "segundo_apellido", "tipo_documento", "numero_documento", "tipo_cotizante")
         )
-        
+
+class LocalidadesRepository(BaseRepository):
+    model = Localidades
+
+    def get_localidad_by_municipio(self, **filters):
+        return(
+            self.model.objects
+            .filter(**filters)
+            .values("municipio","localidad","barrio")
+        )

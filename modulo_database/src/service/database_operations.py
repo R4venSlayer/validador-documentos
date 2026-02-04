@@ -5,7 +5,7 @@ from ..domain.ports import (
 )
 
 from typing import Dict, List
-from ..infrastructure.repository.repositories_manager import MunicipioRepository, AfiliadosRepository
+from ..infrastructure.repository.repositories_manager import MunicipioRepository, AfiliadosRepository, LocalidadesRepository
 
 class CrearRegistroUseCase:
 
@@ -93,6 +93,13 @@ class ObtenerInformacionAfiliadoUseCase:
         
     def execute(self, filters_dictionary):
         return self.repository.get_afiliado_by_id(**filters_dictionary)
+
+class ObtenerLocalidadesUseCase:
+    def __init__(self, repository: LocalidadesRepository):
+        self.repository = repository
+        
+    def execute(self, filters_dictionary):
+        return self.repository.get_localidad_by_municipio(**filters_dictionary)
 
 # class ObtenerTipoArchivoUseCase:
 

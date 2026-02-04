@@ -17,6 +17,7 @@ import uuid
 from ..service.pipeline_get_departamento_form import pipeline_get_records_departamento
 from ..service.pipeline_get_municipios_form import pipeline_get_municipios_por_departamentos
 from ..service.pipeline_get_afiliados_form import pipeline_get_afiliado_por_id
+from ..service.pipeline_get_localidades_form import pipeline_get_localidades_por_id
 
 class UploadFormRecordView(APIView):
 
@@ -164,3 +165,19 @@ class ReturnBasicInformationView(APIView):
             
             status=status.HTTP_200_OK
         )
+    
+class ReturnLocalidadesView(APIView):
+    def get(self, request:Request, municipio:str):
+
+        data = pipeline_get_localidades_por_id(localidad_value=municipio)
+
+        return Response(
+            {
+                "ok": True,
+                "msg": "Se han consultado exitosamente las localidades",
+                "data": data
+            },
+            
+            status=status.HTTP_200_OK
+        )
+    

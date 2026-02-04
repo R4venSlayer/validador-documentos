@@ -95,3 +95,15 @@ class Afiliados(models.Model):
     class Meta:
         managed = False
         db_table = 'Afiliados'
+
+
+class Localidades(models.Model):
+    municipio = models.CharField(max_length=50, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    codigo_barrio = models.CharField(max_length=10, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    barrio = models.CharField(max_length=150, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    localidad = models.CharField(max_length=150, db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+    codigo_localidad = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'Localidades'

@@ -33,3 +33,12 @@ class InformacionPersonaDTO:
     tipo_discapacidad: Optional[str] = None
     grupo_etnico: Optional[str] = None
     poblacion_lgbtiq: Optional[str] = None
+
+
+@dataclass(frozen=True)
+class LocalidadDTO:
+    municipio: Optional[str]
+    codigo_barrio: Optional[str]
+    barrio: Optional[str]
+    localidad: Optional[str]
+    codigo_localidad: Optional[int]
